@@ -12,4 +12,13 @@ export class FilesService {
   async getFiles(): Promise<File[]> {
     return await this.fileModel.find().exec();
   }
+
+  async createMockFile(file: Express.Multer.File): Promise<File> {
+    let mock = 'gun wine';
+
+    console.log(file);
+    const newFile = await this.fileModel.create({ text: mock });
+
+    return newFile;
+  }
 }
