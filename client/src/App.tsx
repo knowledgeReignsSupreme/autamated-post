@@ -4,6 +4,7 @@ import Parcels from './Parcels';
 import Items from './Items';
 import { GlobalStyle } from './GlobalStyle';
 import Tabs from './shared/components/Tabs';
+import Appbar from './shared/components/Appbar';
 
 const tabs = [
   { link: '/parcels', text: 'Parcels' },
@@ -15,6 +16,7 @@ function App() {
     <div>
       <BrowserRouter>
         <GlobalStyle />
+        <Appbar />
         <Tabs tabs={tabs} />
         <Switch>
           <Route path='/parcels' exact component={Parcels} />
