@@ -103,13 +103,16 @@ const filterBadItems = (parcelItems: string) => {
   const removeLineBreak = parcelItems.replace(/(\r\n|\n|\r)/gm, '');
   const splittedWords = removeLineBreak.split(' ');
 
-  for (let item of splittedWords) {
-    if (badItems.includes(item)) {
-      const index = splittedWords.indexOf(item);
-      splittedWords.splice(index, 1);
-    }
-  }
+  // for (let item of splittedWords) {
+  //   if (badItems.includes(item.toLowerCase())) {
+  //     console.log(item);
+  //     const index = splittedWords.indexOf(item);
+  //     splittedWords.splice(index, 1);
+  //   }
+  // }
 
-  const joinedWords = splittedWords.join(' ');
+  const filtered = splittedWords.filter((item) => !badItems.includes(item));
+
+  const joinedWords = filtered.join(' ');
   return joinedWords;
 };

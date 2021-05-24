@@ -27,16 +27,18 @@ export class ItemsService {
       let freq = items.filter((it) => item === it).length;
       let obj = { itemName: item, frequency: freq };
 
-      sortedItems = [...sortedItems, obj];
+      if (item) {
+        sortedItems = [...sortedItems, obj];
+      }
     });
 
     let totalItems = sortedItems.length;
     let totalPages = totalItems / resultsPerPage;
     totalPages = Math.ceil(totalPages);
 
-    const sliceFrom = pageNumber > 1 ? pageNumber * 10 : 0;
+    const sliceFrom = pageNumber === 1 ? 0 : (pageNumber - 1) * 10;
 
-    let slicedItems = sortedItems.slice(sliceFrom, 10);
+    let slicedItems = sortedItems.slice(sliceFrom, sliceFrom + 10);
 
     return {
       data: slicedItems,

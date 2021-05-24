@@ -10,9 +10,9 @@ export class ItemsController {
 
   @Get('/:pageNumber')
   getItemsByPopularity(
-    @Param('/:pageNumber') pageNumber: string | number = 1,
+    @Param('pageNumber') pageNumber: string | number,
   ): PaginatedItemsDto {
-    pageNumber = Number(pageNumber);
+    pageNumber = Number(pageNumber) || 1;
 
     return this.itemsService.getItemsByPopularity(pageNumber);
   }
