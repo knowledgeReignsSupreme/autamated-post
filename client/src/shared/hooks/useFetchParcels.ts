@@ -11,7 +11,7 @@ export function useFetchParcels(
     try {
       setHasError(false);
       const { data } = await axios.get('/parcels');
-      console.log(data);
+
       setParcels(data);
     } catch (error) {
       setHasError(true);
