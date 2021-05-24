@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colorsVariables } from '../GlobalStyle';
 import { Parcel } from '../shared/ts/Parcel';
-import { FaTrash, FaUpload } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
 
 interface ParcelCardProps {
   parcel: Parcel;
@@ -32,16 +32,6 @@ const ParcelCard: React.FC<ParcelCardProps> = ({ parcel }) => {
           </button>
         </p>
       </Text>
-      <Actions>
-        <button>
-          <FaTrash />
-          Delete
-        </button>
-        <button>
-          <FaUpload />
-          Update
-        </button>
-      </Actions>
     </StyledParcel>
   );
 };
@@ -50,6 +40,10 @@ const StyledParcel = styled.div`
   box-shadow: 0 7px 5px rgba(0, 0, 0, 0.5);
   padding: 1rem 0.4rem;
   margin-bottom: 1rem;
+
+  h3 {
+    margin-bottom: 0.3rem;
+  }
 
   button:hover {
     color: ${colorsVariables.main};
@@ -73,10 +67,6 @@ const Actions = styled.div`
 
   svg {
     margin-right: 0.3rem;
-  }
-
-  button + button {
-    margin-left: 1rem;
   }
 `;
 
