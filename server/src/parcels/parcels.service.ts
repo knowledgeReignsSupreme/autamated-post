@@ -1,5 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Injectable } from '@nestjs/common';
 import { Parcel } from './parcel.interface';
 import * as fs from 'fs';
 import { Response } from 'express';
@@ -8,10 +7,7 @@ import { InternalServerErrorException } from '@nestjs/common';
 
 @Injectable()
 export class ParcelsService {
-  constructor(
-    @Inject('FILE_MODEL')
-    private fileModel: Model<Parcel>,
-  ) {}
+  constructor() {}
 
   getParcels(res: Response): void {
     let parcels = [];
