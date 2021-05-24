@@ -27,6 +27,10 @@ export const GlobalStyle = createGlobalStyle`
      font-family: 'Roboto', sans-serif;
     }
 
+    html {
+      color: ${colorsVariables.text};
+    }
+
 button {
     border: none;
     margin: 0;

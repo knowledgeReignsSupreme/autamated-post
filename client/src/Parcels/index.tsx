@@ -17,6 +17,7 @@ const Parcels: React.FC = () => {
       ) : hasError ? (
         <h3>An error has occured. Please try again</h3>
       ) : (
+        parcels.length >= 1 &&
         parcels.map((parcel) => <ParcelCard key={parcel.id} parcel={parcel} />)
       )}
     </StyledParcels>

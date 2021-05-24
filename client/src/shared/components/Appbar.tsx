@@ -23,6 +23,7 @@ const StyledNav = styled.nav`
   width: 100%;
   display: flex;
   background: ${colorsVariables.main};
+  margin-bottom: 1rem;
 `;
 
 const InnerNav = styled.div`
