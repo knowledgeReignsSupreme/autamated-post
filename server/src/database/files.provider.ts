@@ -1,5 +1,5 @@
 import { Connection } from 'mongoose';
-import { FileSchema } from '../files/file.schema';
+import { FileSchema } from '../files/parcels.schema';
 
 export const filesProviders = [
   {

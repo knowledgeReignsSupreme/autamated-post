@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { FilesModule } from './files/files.module';
+import { ParcelsModule } from './files/parcels.module';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
 @Module({
-  imports: [FilesModule],
+  imports: [ParcelsModule],
   controllers: [],
   providers: [],
 })
