@@ -103,8 +103,8 @@ const filterBadItems = (parcelItems: string) => {
   const removeLineBreak = parcelItems.replace(/(\r\n|\n|\r)/gm, '');
   const splittedWords = removeLineBreak.split(' ');
 
-  for (let item of badItems) {
-    if (splittedWords.includes(item)) {
+  for (let item of splittedWords) {
+    if (badItems.includes(item)) {
       const index = splittedWords.indexOf(item);
       splittedWords.splice(index, 1);
     }
