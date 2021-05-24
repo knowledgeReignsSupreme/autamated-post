@@ -4,6 +4,7 @@ import Parcels from './Parcels';
 import Items from './Items';
 import { GlobalStyle } from './GlobalStyle';
 import Appbar from './shared/components/Appbar';
+import Home from './Home';
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
         <Appbar />
         <Switch>
           <Route path='/parcels' exact component={Parcels} />
-          <Route path='/' exact component={Parcels} />
-          <Route path='/items' exact component={Items} />
+          <Route path='/' exact component={Home} />
+          <Route path='/items/page/:pageNumber' exact component={Items} />
         </Switch>
       </BrowserRouter>
     </div>

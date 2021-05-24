@@ -6,7 +6,7 @@ import Tabs from './Tabs';
 const Appbar: React.FC = () => {
   const tabs = [
     { link: '/parcels', text: 'Parcels' },
-    { link: '/items', text: 'Items' },
+    { link: '/items/page/1', text: 'Items' },
   ];
 
   return (

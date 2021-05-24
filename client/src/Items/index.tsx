@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router';
 import styled from 'styled-components';
 import { useFetchItems } from '../shared/hooks/useFetchItems';
 import ItemCard from './ItemCard';
 
 const Items: React.FC = () => {
+  const { pageNumber } = useParams<{ pageNumber: string }>();
+
   const [hasError, setHasError] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [items, paginationData] = useFetchItems(setHasError, 1);
-
-  const isLoading = items && items.length === 0;
+  const [items, paginationData] = useFetchItems(
+    setHasError,
+    setIsLoading,
+    +pageNumber
+  );
 
   return (
     <StyledItems>
@@ -31,11 +37,7 @@ const Items: React.FC = () => {
   );
 };
 
-const StyledItems = styled.div`
-  width: 2000px;
-  max-width: 95%;
-  margin: 0 auto;
-
+const StyledItems = styled.main`
   h4 {
     margin-bottom: 1rem;
   }

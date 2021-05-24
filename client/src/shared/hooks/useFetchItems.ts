@@ -4,6 +4,7 @@ import { Item } from '../ts/Item';
 
 export function useFetchItems(
   setHasError: React.Dispatch<React.SetStateAction<boolean>>,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   pageNumber: number
 ): [Item[], PaginationData] {
   const [paginationData, setPaginationData] = useState<PaginationData>(
@@ -13,8 +14,9 @@ export function useFetchItems(
 
   const fetchItems = useCallback(async () => {
     try {
+      setIsLoading(true);
       setHasError(false);
-      const { data } = await axios.get(`items/${pageNumber}`);
+      const { data } = await axios.get(`/items/${pageNumber}`);
 
       setPaginationData({
         totalPages: data.totalPages,
@@ -23,10 +25,12 @@ export function useFetchItems(
       });
 
       setItems(data?.data);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       setHasError(true);
     }
-  }, [setHasError, pageNumber]);
+  }, [setHasError, pageNumber, setIsLoading]);
 
   useEffect(() => {
     fetchItems();

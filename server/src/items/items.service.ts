@@ -8,7 +8,7 @@ export class ItemsService {
 
   getItemsByPopularity(pageNumber: number): PaginatedItemsDto {
     let items = [];
-    let sortedItems = [];
+    let itemsData = [];
 
     const resultsPerPage = 10;
 
@@ -28,13 +28,15 @@ export class ItemsService {
       const obj = { itemName: item, frequency: freq };
 
       if (item) {
-        sortedItems = [...sortedItems, obj];
+        itemsData = [...itemsData, obj];
       }
     });
 
-    const totalItems = sortedItems.length;
+    const totalItems = itemsData.length;
     let totalPages = totalItems / resultsPerPage;
     totalPages = Math.ceil(totalPages);
+
+    const sortedItems = itemsData.sort((a, b) => b.frequency - a.frequency);
 
     const sliceFrom = pageNumber === 1 ? 0 : (pageNumber - 1) * 10;
 

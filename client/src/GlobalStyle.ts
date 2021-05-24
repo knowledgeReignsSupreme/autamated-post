@@ -51,5 +51,12 @@ h1,h2,h3 {
   font-weight: bold;
 }
 
+main {
+  width: 2000px;
+  max-width: 95%;
+  margin: 0 auto;
+
+}
+
 
 `;
