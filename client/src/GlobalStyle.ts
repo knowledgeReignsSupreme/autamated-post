@@ -47,6 +47,11 @@ button {
     cursor: pointer;
 }
 
+button:disabled {
+  cursor:not-allowed;
+}
+
+
 h1,h2,h3 {
   font-weight: bold;
 }
