@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ParcelsModule } from './files/parcels.module';
+import { ParcelsModule } from './parcels/parcels.module';
 import { ItemsModule } from './items/items.module';
 import * as dotenv from 'dotenv';
 

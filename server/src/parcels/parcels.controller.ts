@@ -20,7 +20,7 @@ export class FilesController {
   constructor(private parcelsService: ParcelsService) {}
 
   @Get('/')
-  getFiles(@Res() res: Response): void {
+  getParcels(@Res() res: Response): void {
     return this.parcelsService.getParcels(res);
   }
 

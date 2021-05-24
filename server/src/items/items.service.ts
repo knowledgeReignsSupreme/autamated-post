@@ -12,33 +12,33 @@ export class ItemsService {
 
     const resultsPerPage = 10;
 
-    let parcels = fs.readdirSync('uploads');
+    const parcels = fs.readdirSync('uploads');
 
     parcels.forEach((filePath) => {
-      let data = fs.readFileSync(`uploads/${filePath}`).toString();
-      data = data.replace(/(\r\n|\n|\r)/gm, '');
+      const data = fs.readFileSync(`uploads/${filePath}`).toString();
+      const textWithNoLinBreaks = data.replace(/(\r\n|\n|\r)/gm, '');
 
-      items = [...items, ...data.split(' ')];
+      items = [...items, ...textWithNoLinBreaks.split(' ')];
     });
 
     const uniqueItems = Array.from(new Set(items));
 
     uniqueItems.forEach((item) => {
-      let freq = items.filter((it) => item === it).length;
-      let obj = { itemName: item, frequency: freq };
+      const freq = items.filter((it) => item === it).length;
+      const obj = { itemName: item, frequency: freq };
 
       if (item) {
         sortedItems = [...sortedItems, obj];
       }
     });
 
-    let totalItems = sortedItems.length;
+    const totalItems = sortedItems.length;
     let totalPages = totalItems / resultsPerPage;
     totalPages = Math.ceil(totalPages);
 
     const sliceFrom = pageNumber === 1 ? 0 : (pageNumber - 1) * 10;
 
-    let slicedItems = sortedItems.slice(sliceFrom, sliceFrom + 10);
+    const slicedItems = sortedItems.slice(sliceFrom, sliceFrom + 10);
 
     return {
       data: slicedItems,

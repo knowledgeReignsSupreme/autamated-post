@@ -20,7 +20,7 @@ export class ParcelsService {
 
       fileNames.forEach((filePath) => {
         let data = readFile(filePath);
-        parcels.push(data);
+        parcels.push({ text: data, id: filePath });
       });
 
       res.json(parcels);
@@ -36,7 +36,7 @@ export class ParcelsService {
       if (error) throw new InternalServerErrorException();
     });
 
-    return { text: cleanParcelData };
+    return { text: cleanParcelData, id: fileName };
   }
 
   async getParcel(fileName: string): Promise<Parcel> {
@@ -45,7 +45,7 @@ export class ParcelsService {
       throw new NotFoundException('File not found');
     }
 
-    return parcel;
+    return { text: parcel.text, id: fileName };
   }
 
   async updateFile(
@@ -59,7 +59,7 @@ export class ParcelsService {
       if (error) throw new InternalServerErrorException();
     });
 
-    return { text: cleanParcelItems };
+    return { text: cleanParcelItems, id: fileName };
   }
 
   deleteParcel(fileName: string): { success: boolean } {
@@ -72,7 +72,7 @@ export class ParcelsService {
   }
 }
 
-const readFile = (fileName: string): Parcel => {
+const readFile = (fileName: string): { text: string } => {
   try {
     const data = fs.readFileSync(`uploads/${fileName}`, 'utf-8');
 
@@ -102,14 +102,6 @@ const filterBadItems = (parcelItems: string) => {
 
   const removeLineBreak = parcelItems.replace(/(\r\n|\n|\r)/gm, '');
   const splittedWords = removeLineBreak.split(' ');
-
-  // for (let item of splittedWords) {
-  //   if (badItems.includes(item.toLowerCase())) {
-  //     console.log(item);
-  //     const index = splittedWords.indexOf(item);
-  //     splittedWords.splice(index, 1);
-  //   }
-  // }
 
   const filtered = splittedWords.filter((item) => !badItems.includes(item));
 
