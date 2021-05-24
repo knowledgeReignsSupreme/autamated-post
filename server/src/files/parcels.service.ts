@@ -28,17 +28,19 @@ export class ParcelsService {
   }
 
   async createParcel(file: Express.Multer.File): Promise<Parcel> {
-    const newName = renameFile(file);
+    const fileName = renameFile(file);
+    const parcelData = file.buffer.toString();
+    const cleanParcelData = filterBadItems(parcelData);
 
-    fs.rename(`uploads/${file.filename}`, `uploads/${newName}`, (err) => {
-      if (err) throw new InternalServerErrorException();
+    fs.writeFile(`uploads/${fileName}`, cleanParcelData, (error) => {
+      if (error) throw new InternalServerErrorException();
     });
 
-    return readFile(newName);
+    return { text: cleanParcelData };
   }
 
   async getParcel(fileName: string): Promise<Parcel> {
-    let parcel = await readFile(fileName);
+    const parcel = await readFile(fileName);
     if (!parcel) {
       throw new NotFoundException('File not found');
     }
@@ -50,13 +52,14 @@ export class ParcelsService {
     fileName: string,
     file: Express.Multer.File,
   ): Promise<Parcel> {
-    let parcelData = file.buffer.toString();
+    const parcelItems = file.buffer.toString();
+    const cleanParcelItems = filterBadItems(parcelItems);
 
-    await fs.writeFile(`uploads/${fileName}`, parcelData, (error) => {
+    await fs.writeFile(`uploads/${fileName}`, cleanParcelItems, (error) => {
       if (error) throw new InternalServerErrorException();
     });
 
-    return { text: parcelData };
+    return { text: cleanParcelItems };
   }
 
   deleteParcel(fileName: string): { success: boolean } {
@@ -69,9 +72,9 @@ export class ParcelsService {
   }
 }
 
-export const readFile = (fileName): Parcel => {
+export const readFile = (fileName: string): Parcel => {
   try {
-    let data = fs.readFileSync(`uploads/${fileName}`, 'utf-8');
+    const data = fs.readFileSync(`uploads/${fileName}`, 'utf-8');
 
     return { text: data };
   } catch (error) {
@@ -79,9 +82,34 @@ export const readFile = (fileName): Parcel => {
   }
 };
 
-const renameFile = (file): string => {
-  let fileExtension = file.originalname.split('.')[1];
-  let newName = `${new Date().getTime().toString()}.${fileExtension}`;
+const renameFile = (file: Express.Multer.File): string => {
+  const fileExtension = file.originalname.split('.')[1];
+  const newName = `${new Date().getTime().toString()}.${fileExtension}`;
 
   return newName;
+};
+
+const filterBadItems = (parcelItems: string) => {
+  const badItems = [
+    'drugs',
+    'gun',
+    'knife',
+    'monkey',
+    'pills',
+    'sword',
+    'wine',
+  ];
+
+  const removeLineBreak = parcelItems.replace(/(\r\n|\n|\r)/gm, '');
+  const splittedWords = removeLineBreak.split(' ');
+
+  for (let item of badItems) {
+    if (splittedWords.includes(item)) {
+      const index = splittedWords.indexOf(item);
+      splittedWords.splice(index, 1);
+    }
+  }
+
+  const joinedWords = splittedWords.join(' ');
+  return joinedWords;
 };

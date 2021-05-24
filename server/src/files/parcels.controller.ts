@@ -25,7 +25,7 @@ export class FilesController {
   }
 
   @Post('/')
-  @UseInterceptors(FileInterceptor('file', { dest: 'uploads' }))
+  @UseInterceptors(FileInterceptor('file'))
   async createParcel(
     @UploadedFile() file: Express.Multer.File,
   ): Promise<Parcel> {
