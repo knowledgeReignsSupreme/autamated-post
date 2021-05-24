@@ -15,14 +15,13 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
     "downlevelIteration": true,
     "noImplicitAny": false,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
-
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true
   },
   "include": [
     "src"

@@ -48,25 +48,16 @@ const StyledParcel = styled.div`
   button:hover {
     color: ${colorsVariables.main};
   }
+
+  &:nth-of-type(even) {
+    background: #fff6f6;
+  }
 `;
 
 const Text = styled.div`
   button {
     color: ${colorsVariables.textBold};
     font-weight: bold;
-  }
-`;
-
-const Actions = styled.div`
-  margin-top: 1rem;
-
-  button {
-    border: 1px solid ${colorsVariables.textBold};
-    padding: 0.2rem 0.4rem;
-  }
-
-  svg {
-    margin-right: 0.3rem;
   }
 `;
 
