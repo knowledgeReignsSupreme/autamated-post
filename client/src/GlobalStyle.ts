@@ -5,13 +5,15 @@ interface ColorObject {
   danger: string;
   text: string;
   textBold: string;
+  white: string;
 }
 
-export const colors: ColorObject = {
+export const colorsVariables: ColorObject = {
   main: '#185adb',
   danger: '#962d2d',
   text: '#3a3939',
   textBold: '#000',
+  white: '#fff',
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -24,8 +26,6 @@ export const GlobalStyle = createGlobalStyle`
   :root{
      font-family: 'Roboto', sans-serif;
     }
-
-
 
 button {
     border: none;
@@ -46,4 +46,6 @@ button {
 h1,h2,h3 {
   font-weight: bold;
 }
+
+
 `;
