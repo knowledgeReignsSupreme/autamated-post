@@ -20,7 +20,7 @@ export class ParcelsService {
 
       fileNames.forEach((filePath) => {
         let data = readFile(filePath);
-        parcels.push({ text: data, id: filePath });
+        parcels.push({ text: data.text, id: filePath });
       });
 
       res.json(parcels);
