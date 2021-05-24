@@ -72,7 +72,7 @@ export class ParcelsService {
   }
 }
 
-export const readFile = (fileName: string): Parcel => {
+const readFile = (fileName: string): Parcel => {
   try {
     const data = fs.readFileSync(`uploads/${fileName}`, 'utf-8');
 
