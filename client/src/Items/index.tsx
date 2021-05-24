@@ -17,6 +17,8 @@ const Items: React.FC = () => {
     +pageNumber
   );
 
+  const isEmpty = !isLoading && items.length === 1;
+
   return (
     <ItemsPage>
       <StyledItems>
@@ -25,8 +27,11 @@ const Items: React.FC = () => {
           <h3>Loading..</h3>
         ) : hasError ? (
           <h3>An error has occured. Please try again</h3>
+        ) : isEmpty ? (
+          <h3>No items to show.</h3>
         ) : (
-          !isLoading && (
+          !isLoading &&
+          !isEmpty && (
             <>
               <h4>Total items: {paginationData.totalItems}</h4>
               {items.map((item) => (

@@ -8,6 +8,7 @@ const Parcels: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const parcels = useFetchParcels(setHasError, setIsLoading);
+  const isEmpty = !isLoading && parcels.length === 0;
 
   return (
     <StyledParcels>
@@ -16,6 +17,8 @@ const Parcels: React.FC = () => {
         <h3>Loading..</h3>
       ) : hasError ? (
         <h3>An error has occured. Please try again</h3>
+      ) : isEmpty ? (
+        <h3>No parcels to show.</h3>
       ) : (
         !isLoading &&
         parcels.length >= 1 &&
