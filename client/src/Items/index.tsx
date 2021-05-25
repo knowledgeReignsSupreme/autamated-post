@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
-import Pagination from '../shared/components/Pagination';
+import Pagination from './Pagination';
 import { useFetchItems } from '../shared/hooks/useFetchItems';
 import ItemCard from './ItemCard';
 

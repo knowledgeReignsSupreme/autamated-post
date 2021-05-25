@@ -2,7 +2,7 @@ import React from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { colorsVariables } from '../../GlobalStyle';
+import { colorsVariables } from '../GlobalStyle';
 
 interface PaginationProps {
   totalPages: number;
@@ -37,9 +37,9 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, page }) => {
 };
 
 const StyledPagination = styled.div`
-  width: max-content;
-  max-width: 100%;
-  margin: 0 auto;
+  max-width: 95%;
+  text-align: center;
+  margin-top: 1rem;
   white-space: nowrap;
   p {
     margin: 0 0.5rem;
