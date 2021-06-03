@@ -6,6 +6,7 @@ interface ColorObject {
   secondaryDark: string;
   danger: string;
   text: string;
+  grayish: string;
   textBold: string;
   white: string;
 }
@@ -18,6 +19,7 @@ export const colorsVariables: ColorObject = {
   text: '#3a3939',
   textBold: '#000',
   white: '#fff',
+  grayish: '#e4e4e4',
 };
 
 export const GlobalStyle = createGlobalStyle`
