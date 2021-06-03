@@ -43,6 +43,10 @@ const StyledButton = styled.button<StyleProps>`
 
   background: ${({ bgColor }) => bgColor};
 
+  border: ${(props) =>
+    props.bgColor === colorsVariables.white &&
+    `1px solid ${colorsVariables.main}`};
+
   svg {
     margin-left: 0.3rem;
     vertical-align: middle;

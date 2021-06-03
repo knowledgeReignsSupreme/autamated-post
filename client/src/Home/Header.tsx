@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import documentSvg from '../media/document.svg';
+import work from '../media/work.svg';
 import containers from '../media/containers.jpg';
 import { colorsVariables } from '../GlobalStyle';
+import Button from '../shared/components/Buttons';
 
 const Header: React.FC = () => {
   return (
@@ -11,8 +12,10 @@ const Header: React.FC = () => {
         <Text>
           <h1>Israel Post</h1>
           <h2>Track parcels and explore products</h2>
-          <button>Show me</button>
-          <button>Don't Show me</button>
+          <Buttons>
+            <Button text='Show Parcels' color='main' bgColor='white' />
+            <Button text='Show Products' color='dark' bgColor='white' />
+          </Buttons>
         </Text>
         <DocumentSvg height={300} width={300} opacity={'0.8'} />
       </Content>
@@ -65,6 +68,12 @@ const Text = styled.div`
   }
 `;
 
+const Buttons = styled.div`
+  margin-top: 1rem;
+  button + button {
+    margin-left: 0.5rem;
+  }
+`;
 export default Header;
 
 interface DocumentSvgProps {
@@ -81,7 +90,7 @@ const DocumentSvg: React.FC<DocumentSvgProps> = ({
   return (
     <>
       <img
-        src={documentSvg}
+        src={work}
         alt='document'
         height={height}
         width={width}
