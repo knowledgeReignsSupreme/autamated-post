@@ -58,9 +58,16 @@ const StyledHeader = styled.div`
 
 const Content = styled.div`
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding-top: 1rem;
+  justify-content: space-evenly;
+  padding: 1rem;
+
+  @media (max-width: 820px) {
+    text-align: center;
+    flex-direction: column;
+    img {
+      margin: 0.5rem auto 0;
+    }
+  }
 `;
 
 const Text = styled.div`
@@ -69,7 +76,7 @@ const Text = styled.div`
     color: ${colorsVariables.main};
   }
 
-  @media (max-width: 850px) {
+  @media (max-width: 820px) {
     margin-bottom: 1rem;
   }
 `;
