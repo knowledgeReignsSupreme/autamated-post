@@ -59,7 +59,7 @@ const Wrapper = styled.div`
 `;
 
 const Form = styled.div<WrapperStyle>`
-  width: 100%;
+  width: 100% !important;
   margin-top: 1rem !important;
   background: #eb01a5;
   min-height: 15rem;
@@ -100,6 +100,8 @@ const StyledInput = styled.div`
 
   input {
     width: 80%;
+    border: 1px solid ${colorsVariables.main};
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
   }
 
   @media (max-width: 600px) {
