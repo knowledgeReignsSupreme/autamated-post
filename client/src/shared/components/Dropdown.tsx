@@ -12,6 +12,8 @@ import { colorsVariables } from '../../GlobalStyle';
 
 interface DropdownProps {
   show: boolean;
+  dropdownRef: React.MutableRefObject<HTMLDivElement>;
+  closeDropdown: () => void;
 }
 
 interface LinkData {
@@ -20,7 +22,11 @@ interface LinkData {
   linkTo: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ show }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+  show,
+  dropdownRef,
+  closeDropdown,
+}) => {
   const links: LinkData[] = [
     { text: 'Home', icon: <FaHome />, linkTo: '/' },
     { text: 'Parcels', icon: <FaBoxes />, linkTo: '/parcels' },
@@ -30,9 +36,14 @@ const Dropdown: React.FC<DropdownProps> = ({ show }) => {
   ];
 
   return !show ? null : (
-    <StyledDropdown>
+    <StyledDropdown ref={dropdownRef}>
       {links.map((link) => (
-        <NavLink exact={true} key={link.text} to={link.linkTo}>
+        <NavLink
+          exact={true}
+          key={link.text}
+          to={link.linkTo}
+          onClick={closeDropdown}
+        >
           {link.icon} {link.text}
         </NavLink>
       ))}
