@@ -37,7 +37,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, page }) => {
 };
 
 const StyledPagination = styled.div`
-  max-width: 95%;
+  max-width: 97%;
   text-align: center;
   margin-top: 1rem;
   white-space: nowrap;

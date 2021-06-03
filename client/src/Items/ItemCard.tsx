@@ -18,9 +18,10 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
 };
 
 const StyledItem = styled.div`
-  max-width: 95%;
+  max-width: 97%;
   padding: 0.5rem 0.5rem;
   border: 1px solid black;
+  margin: 0 auto;
   margin-bottom: 0.5rem;
 
   p {
