@@ -42,6 +42,8 @@ export class ItemsService {
 
     const slicedItems = sortedItems.slice(sliceFrom, sliceFrom + 10);
 
+    console.log(slicedItems);
+
     return {
       data: slicedItems,
       page: pageNumber,

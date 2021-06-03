@@ -9,7 +9,7 @@ import { InternalServerErrorException } from '@nestjs/common';
 export class ParcelsService {
   constructor() {}
 
-  getParcels(res: Response): void {
+  getParcels(res?: Response): void {
     let parcels = [];
     fs.readdir('uploads', (error, fileNames) => {
       if (error) throw error;
@@ -21,6 +21,19 @@ export class ParcelsService {
 
       res.json(parcels);
     });
+  }
+
+  getAllParcels(): Parcel[] {
+    let data: Parcel[] = [];
+    const parcels = fs.readdirSync('uploads');
+
+    parcels.forEach((filePath) => {
+      const parcel = readFile(filePath);
+      const { text } = parcel;
+      data.push({ text, id: filePath });
+    });
+
+    return data;
   }
 
   async createParcel(file: Express.Multer.File): Promise<Parcel> {
