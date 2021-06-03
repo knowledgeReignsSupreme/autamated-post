@@ -18,26 +18,30 @@ const ContactUs: React.FC = () => {
   const deviceWidth: number = window.innerWidth;
 
   const fields: Field[] = [
-    { label: 'Full name:', type: 'string' },
-    { label: 'Company name:', type: 'string' },
-    { label: 'Phone number:', type: 'number' },
+    { label: 'Full name', type: 'string' },
+    { label: 'Company name', type: 'string' },
+    { label: 'Phone number', type: 'number' },
   ];
 
   return (
     <Wrapper>
       <h2>Contant Us</h2>
       <Form deviceWidth={deviceWidth}>
-        <Content>
+        <Content
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           {fields.map((field) => (
-            <div>
-              <label>{field.label}</label>
+            <StyledInput>
+              <label>{`${field.label}:`}</label>
               <input type={field.type} placeholder={field.label} />
-            </div>
+            </StyledInput>
           ))}
 
           <Button
             color='white'
-            bgColor='main'
+            bgColor='secondaryDark'
             text='Send'
             icon={<FaPaperPlane />}
           />
@@ -79,6 +83,40 @@ const Form = styled.div<WrapperStyle>`
   }
 `;
 
-const Content = styled.form``;
+const Content = styled.form`
+  max-width: 40% !important;
+  padding: 1rem;
+`;
+
+const StyledInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+
+  label {
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+  }
+
+  input {
+    width: 80%;
+  }
+
+  @media (max-width: 600px) {
+    input {
+      min-width: 170%;
+    }
+    p {
+      white-space: normal;
+      width: 170% !important;
+    }
+  }
+
+  @media (min-width: 601px) and (max-width: 900px) {
+    input {
+      min-width: 100%;
+    }
+  }
+`;
 
 export default ContactUs;

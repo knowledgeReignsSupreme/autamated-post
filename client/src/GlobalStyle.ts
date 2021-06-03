@@ -72,5 +72,9 @@ a {
   color: inherit;
 }
 
+input {
+  min-height: 2rem;
+  padding-left: .4rem;
+}
 
 `;
