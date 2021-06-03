@@ -7,7 +7,7 @@ import {
   FaUser,
 } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { colorsVariables } from '../../GlobalStyle';
 
 interface DropdownProps {
