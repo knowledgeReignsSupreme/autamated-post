@@ -12,7 +12,7 @@ const Benefis: React.FC = () => {
   const benefits: Benefit[] = [
     {
       header: 'Take advantage of technology',
-      text: 'Use a smart system to keep track of parcels and manage them',
+      text: 'Use a smart system to keep track and manage parcels',
       icon: <FaCog />,
     },
     {
