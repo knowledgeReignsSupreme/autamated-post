@@ -47,7 +47,7 @@ export class FilesController {
   }
 
   @Delete('/:fileName')
-  deleteFile(@Param('fileName') fileName: string): { success: boolean } {
+  deleteFile(@Param('fileName') fileName: string): Parcel {
     return this.parcelsService.deleteParcel(fileName);
   }
 }

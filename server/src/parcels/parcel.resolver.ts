@@ -1,7 +1,6 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ObjectType } from '@nestjs/graphql';
 import { ParcelType } from './parcel.type';
 import { ParcelsService } from './parcels.service';
-import { GraphQLUpload } from 'graphql-upload';
 import { Parcel } from './parcel.interface';
 
 @Resolver((of) => ParcelType)
@@ -16,6 +15,11 @@ export class ParcelResolver {
   @Query((returns) => ParcelType)
   parcel(@Args('fileName') fileName: string): Promise<Parcel> {
     return this.parcelService.getParcel(fileName);
+  }
+
+  @Mutation((returns) => ParcelType)
+  deleteParcel(@Args('fileName') fileName: string): Parcel {
+    return this.parcelService.deleteParcel(fileName);
   }
 
   // @Mutation(() => File)

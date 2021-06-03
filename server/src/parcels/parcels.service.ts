@@ -71,21 +71,23 @@ export class ParcelsService {
     return { text: cleanParcelItems, id: fileName };
   }
 
-  deleteParcel(fileName: string): { success: boolean } {
+  deleteParcel(fileName: string): Parcel {
     try {
+      const fileToBeDeleted = readFile(fileName);
+
       fs.unlinkSync(`uploads/${fileName}`);
-      return { success: true };
+      return fileToBeDeleted;
     } catch (error) {
       throw new InternalServerErrorException();
     }
   }
 }
 
-const readFile = (fileName: string): { text: string } => {
+const readFile = (fileName: string): Parcel => {
   try {
     const data = fs.readFileSync(`uploads/${fileName}`, 'utf-8');
 
-    return { text: data };
+    return { text: data, id: fileName };
   } catch (error) {
     throw new InternalServerErrorException();
   }

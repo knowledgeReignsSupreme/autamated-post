@@ -1,8 +1,7 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
 import { PaginatedItemsDto } from './dto/PaginatedItems.dto';
-import { Item } from './item.interface';
 import { ItemsService } from './items.service';
-import { ItemType, PaginatedItemType } from './items.type';
+import { PaginatedItemType } from './items.type';
 
 @Resolver((of) => PaginatedItemType)
 export class ItemResolver {
