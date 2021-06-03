@@ -12,7 +12,7 @@ const Parcels: React.FC = () => {
 
   return (
     <StyledParcels>
-      <h2>Parcels:</h2>
+      <h2>All Parcels:</h2>
       {isLoading ? (
         <h3>Loading..</h3>
       ) : hasError ? (

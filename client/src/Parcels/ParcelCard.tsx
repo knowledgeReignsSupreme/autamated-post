@@ -38,7 +38,12 @@ const ParcelCard: React.FC<ParcelCardProps> = ({ parcel }) => {
         </p>
       </Text>
       <Actions>
-        <Button text='Edit' icon={<FaEdit />} color='main' bgColor='white' />
+        <Button
+          text='Edit'
+          icon={<FaEdit />}
+          color='secondaryDark'
+          bgColor='transparent'
+        />
         <Button
           icon={<FaTrash />}
           text='Delete'

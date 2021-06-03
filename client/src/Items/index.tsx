@@ -22,7 +22,7 @@ const Items: React.FC = () => {
   return (
     <ItemsPage>
       <StyledItems>
-        <h3>Items:</h3>
+        <h3>Popular Items:</h3>
         {isLoading ? (
           <h3>Loading..</h3>
         ) : hasError ? (
@@ -33,7 +33,7 @@ const Items: React.FC = () => {
           !isLoading &&
           !isEmpty && (
             <>
-              <h4>Total items: {paginationData.totalItems}</h4>
+              <h4>Total: {paginationData.totalItems}</h4>
               {items.map((item) => (
                 <ItemCard key={item.itemName} item={item} />
               ))}

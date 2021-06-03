@@ -12,7 +12,7 @@ const Header: React.FC = () => {
       <Content>
         <Text>
           <h1>Smart Post</h1>
-          <h2>Track parcels and explore products</h2>
+          <h3>cutting-edge parcels management technology</h3>
           <Buttons>
             <Link to='parcels'>
               <Button text='Show Parcels' color='main' bgColor='white' />
@@ -76,6 +76,7 @@ const Content = styled.div`
 `;
 
 const Text = styled.div`
+  margin-right: 1rem;
   h1 {
     font-size: 3rem;
     color: ${colorsVariables.main};
