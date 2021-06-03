@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 interface ColorObject {
   main: string;
   secondary: string;
+  secondaryDark: string;
   danger: string;
   text: string;
   textBold: string;
@@ -12,6 +13,7 @@ interface ColorObject {
 export const colorsVariables: ColorObject = {
   main: '#aa2ee6',
   secondary: '#54C2EF',
+  secondaryDark: '#06719b',
   danger: '#962d2d',
   text: '#3a3939',
   textBold: '#000',
