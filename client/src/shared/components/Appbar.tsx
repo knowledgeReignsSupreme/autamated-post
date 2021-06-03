@@ -14,7 +14,7 @@ const Appbar: React.FC = () => {
     <StyledNav>
       <InnerNav>
         <Logo>
-          <Link to='/'>Israel Post</Link>
+          <Link to='/'>Smart Post</Link>
         </Logo>
         <Tabs tabs={tabs} />
       </InnerNav>

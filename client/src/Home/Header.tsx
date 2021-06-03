@@ -10,7 +10,7 @@ const Header: React.FC = () => {
     <StyledHeader>
       <Content>
         <Text>
-          <h1>Israel Post</h1>
+          <h1>Smart Post</h1>
           <h2>Track parcels and explore products</h2>
           <Buttons>
             <Button text='Show Parcels' color='main' bgColor='white' />
