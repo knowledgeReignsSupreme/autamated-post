@@ -17,7 +17,13 @@ const Header: React.FC = () => {
             <Button text='Show Products' color='dark' bgColor='white' />
           </Buttons>
         </Text>
-        <DocumentSvg height={300} width={300} opacity={'0.8'} />
+        <img
+          src={work}
+          alt='document'
+          height={300}
+          width={300}
+          style={{ opacity: '0.8' }}
+        />
       </Content>
     </StyledHeader>
   );
@@ -74,28 +80,5 @@ const Buttons = styled.div`
     margin-left: 0.5rem;
   }
 `;
+
 export default Header;
-
-interface DocumentSvgProps {
-  height: number;
-  width: number;
-  opacity: string;
-}
-
-const DocumentSvg: React.FC<DocumentSvgProps> = ({
-  width,
-  height,
-  opacity,
-}) => {
-  return (
-    <>
-      <img
-        src={work}
-        alt='document'
-        height={height}
-        width={width}
-        style={{ opacity }}
-      />
-    </>
-  );
-};
