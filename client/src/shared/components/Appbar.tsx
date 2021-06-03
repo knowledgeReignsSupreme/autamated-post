@@ -3,18 +3,12 @@ import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colorsVariables } from '../../GlobalStyle';
-import Tabs from './Tabs';
 
 interface AppBarProps {
   toggleDropdown: () => void;
 }
 
 const Appbar: React.FC<AppBarProps> = ({ toggleDropdown }) => {
-  const tabs = [
-    { link: '/parcels', text: 'Parcels' },
-    { link: '/items/page/1', text: 'Items' },
-  ];
-
   return (
     <StyledNav>
       <InnerNav>
@@ -22,7 +16,6 @@ const Appbar: React.FC<AppBarProps> = ({ toggleDropdown }) => {
           <Link to='/'>Smart Post</Link>
         </Logo>
         <FaBars onClick={toggleDropdown} />
-        {/* <Tabs tabs={tabs} /> */}
       </InnerNav>
     </StyledNav>
   );
