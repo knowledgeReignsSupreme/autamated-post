@@ -64,7 +64,7 @@ main {
   width: 2000px;
   max-width: 95%;
   margin: 0 auto;
-
+  margin-bottom: 1rem;
 }
 
 a {
