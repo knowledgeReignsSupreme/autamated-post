@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colorsVariables } from '../../GlobalStyle';
 import Tabs from './Tabs';
@@ -12,7 +13,9 @@ const Appbar: React.FC = () => {
   return (
     <StyledNav>
       <InnerNav>
-        <Logo>Israel Post</Logo>
+        <Logo>
+          <Link to='/'>Israel Post</Link>
+        </Logo>
         <Tabs tabs={tabs} />
       </InnerNav>
     </StyledNav>

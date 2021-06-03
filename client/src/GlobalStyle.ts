@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 interface ColorObject {
   main: string;
+  secondary: string;
   danger: string;
   text: string;
   textBold: string;
@@ -9,7 +10,8 @@ interface ColorObject {
 }
 
 export const colorsVariables: ColorObject = {
-  main: '#185adb',
+  main: '#aa2ee6',
+  secondary: '#54C2EF',
   danger: '#962d2d',
   text: '#3a3939',
   textBold: '#000',
@@ -61,6 +63,11 @@ main {
   max-width: 95%;
   margin: 0 auto;
 
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 
