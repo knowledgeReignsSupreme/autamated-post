@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Benefis from './Benefits';
+import ContactUs from './ContactUs';
 import Header from './Header';
 
 const Home: React.FC = () => {
@@ -9,6 +10,8 @@ const Home: React.FC = () => {
       <Header />
       <StyledSeperator></StyledSeperator>
       <Benefis />
+      <StyledSeperator></StyledSeperator>
+      <ContactUs />
     </StyledHome>
   );
 };
