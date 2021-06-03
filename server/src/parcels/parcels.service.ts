@@ -99,7 +99,10 @@ const filterBadItems = (parcelItems: string) => {
   const removeLineBreak = parcelItems.replace(/(\r\n|\n|\r)/gm, '');
   const splittedWords = removeLineBreak.split(' ');
 
-  const filtered = splittedWords.filter((item) => !badItems.includes(item));
+  // const filtered = splittedWords.filter((item) => !badItems.includes(item));
+  const filtered = splittedWords.filter(
+    (item) => badItems.indexOf(item) === -1,
+  );
 
   const joinedWords = filtered.join(' ');
   return joinedWords;
