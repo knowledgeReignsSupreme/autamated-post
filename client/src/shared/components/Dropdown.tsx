@@ -7,7 +7,7 @@ import {
   FaUser,
 } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { colorsVariables } from '../../GlobalStyle';
 
 interface DropdownProps {
@@ -59,7 +59,6 @@ const StyledDropdown = styled.div`
   padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
-
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
   background: ${colorsVariables.grayish};
 

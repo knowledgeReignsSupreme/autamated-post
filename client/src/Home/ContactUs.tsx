@@ -3,7 +3,7 @@ import { FaPaperPlane } from 'react-icons/fa';
 import styled from 'styled-components';
 import { colorsVariables } from '../GlobalStyle';
 import machine from '../media/machine.jpg';
-import Button from '../shared/components/Buttons';
+import Button from '../shared/components/Button';
 
 interface WrapperStyle {
   deviceWidth: number;

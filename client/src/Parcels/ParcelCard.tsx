@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import styled from 'styled-components';
 import { colorsVariables } from '../GlobalStyle';
+import Button from '../shared/components/Button';
 import { Parcel } from '../shared/ts/Parcel';
 
 interface ParcelCardProps {
@@ -35,6 +37,15 @@ const ParcelCard: React.FC<ParcelCardProps> = ({ parcel }) => {
           )}
         </p>
       </Text>
+      <Actions>
+        <Button text='Edit' icon={<FaEdit />} color='main' bgColor='white' />
+        <Button
+          icon={<FaTrash />}
+          text='Delete'
+          color='danger'
+          bgColor='transparent'
+        />
+      </Actions>
     </StyledParcel>
   );
 };
@@ -61,6 +72,13 @@ const Text = styled.div`
   button {
     color: ${colorsVariables.textBold};
     font-weight: bold;
+  }
+`;
+
+const Actions = styled.div`
+  margin-top: 1rem;
+  button + button {
+    margin-left: 0.3rem;
   }
 `;
 

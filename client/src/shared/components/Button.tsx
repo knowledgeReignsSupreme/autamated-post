@@ -34,6 +34,7 @@ const StyledButton = styled.button<StyleProps>`
   padding: 0.4rem 0.6rem;
   transition: all 0.4s ease-out;
   font-weight: bold;
+
   &:hover {
     opacity: 0.75;
     padding: 0.4rem 0.9rem;
@@ -47,9 +48,12 @@ const StyledButton = styled.button<StyleProps>`
     props.bgColor === colorsVariables.white &&
     `1px solid ${colorsVariables.main}`};
 
+  border: ${(props) =>
+    props.bgColor === 'transparent' && `1px solid ${colorsVariables.textBold}`};
+
   svg {
-    margin-left: 0.3rem;
-    vertical-align: middle;
+    margin-right: 0.2rem;
+    font-size: 0.8rem;
   }
 `;
 

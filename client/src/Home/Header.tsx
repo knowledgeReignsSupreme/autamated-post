@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import work from '../media/work.svg';
 import containers from '../media/containers.jpg';
 import { colorsVariables } from '../GlobalStyle';
-import Button from '../shared/components/Buttons';
+import Button from '../shared/components/Button';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
   return (
@@ -13,8 +14,12 @@ const Header: React.FC = () => {
           <h1>Smart Post</h1>
           <h2>Track parcels and explore products</h2>
           <Buttons>
-            <Button text='Show Parcels' color='main' bgColor='white' />
-            <Button text='Show Products' color='dark' bgColor='white' />
+            <Link to='parcels'>
+              <Button text='Show Parcels' color='main' bgColor='white' />
+            </Link>
+            <Link to='items/page/1'>
+              <Button text='Show Products' color='dark' bgColor='white' />
+            </Link>
           </Buttons>
         </Text>
         <img
@@ -83,7 +88,8 @@ const Text = styled.div`
 
 const Buttons = styled.div`
   margin-top: 1rem;
-  button + button {
+
+  a + a {
     margin-left: 0.5rem;
   }
 `;

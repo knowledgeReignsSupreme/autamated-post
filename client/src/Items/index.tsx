@@ -46,7 +46,9 @@ const Items: React.FC = () => {
   );
 };
 
-const ItemsPage = styled.main``;
+const ItemsPage = styled.main`
+  margin-top: 1rem;
+`;
 
 const StyledItems = styled.div`
   h4 {

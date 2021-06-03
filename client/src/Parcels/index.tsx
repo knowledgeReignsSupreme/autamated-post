@@ -28,6 +28,8 @@ const Parcels: React.FC = () => {
   );
 };
 
-const StyledParcels = styled.main``;
+const StyledParcels = styled.main`
+  margin-top: 1rem;
+`;
 
 export default Parcels;

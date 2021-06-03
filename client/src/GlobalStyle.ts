@@ -9,17 +9,19 @@ interface ColorObject {
   grayish: string;
   textBold: string;
   white: string;
+  transparent: string;
 }
 
 export const colorsVariables: ColorObject = {
   main: '#aa2ee6',
   secondary: '#54C2EF',
   secondaryDark: '#06719b',
-  danger: '#962d2d',
+  danger: 'darkred',
   text: '#3a3939',
   textBold: '#000',
   white: '#fff',
   grayish: '#e4e4e4',
+  transparent: 'transparent',
 };
 
 export const GlobalStyle = createGlobalStyle`
