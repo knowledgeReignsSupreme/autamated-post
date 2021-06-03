@@ -31,7 +31,7 @@ const Benefis: React.FC = () => {
       <h2>Why use our service?</h2>
       <BenefitsWrapper>
         {benefits.map((benefit) => (
-          <StyledBenefit>
+          <StyledBenefit key={benefit.text}>
             {benefit.icon}
             <h3>{benefit.header}</h3>
             <p>{benefit.text}</p>

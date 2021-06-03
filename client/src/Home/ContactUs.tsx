@@ -33,7 +33,7 @@ const ContactUs: React.FC = () => {
           }}
         >
           {fields.map((field) => (
-            <StyledInput>
+            <StyledInput key={field.label}>
               <label>{`${field.label}:`}</label>
               <input type={field.type} placeholder={field.label} />
             </StyledInput>
