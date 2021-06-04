@@ -1,29 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { Parcel } from './parcel.interface';
 import * as fs from 'fs';
-import { Response } from 'express';
 import { NotFoundException } from '@nestjs/common';
 import { InternalServerErrorException } from '@nestjs/common';
+import { FileUpload } from 'graphql-upload';
 
 @Injectable()
 export class ParcelsService {
   constructor() {}
 
-  getParcels(res?: Response): void {
-    let parcels = [];
-    fs.readdir('uploads', (error, fileNames) => {
-      if (error) throw error;
-
-      fileNames.forEach((filePath) => {
-        let data = readFile(filePath);
-        parcels.push({ text: data.text, id: filePath });
-      });
-
-      res.json(parcels);
-    });
-  }
-
-  getAllParcels(): Parcel[] {
+  getParcels(): Parcel[] {
     let data: Parcel[] = [];
     const parcels = fs.readdirSync('uploads');
 
@@ -36,18 +22,6 @@ export class ParcelsService {
     return data;
   }
 
-  async createParcel(file: Express.Multer.File): Promise<Parcel> {
-    const fileName = renameFile(file);
-    const parcelData = file.buffer.toString();
-    const cleanParcelData = filterBadItems(parcelData);
-
-    fs.writeFile(`uploads/${fileName}`, cleanParcelData, (error) => {
-      if (error) throw new InternalServerErrorException();
-    });
-
-    return { text: cleanParcelData, id: fileName };
-  }
-
   async getParcel(fileName: string): Promise<Parcel> {
     const parcel = await readFile(fileName);
     if (!parcel) {
@@ -57,7 +31,64 @@ export class ParcelsService {
     return { text: parcel.text, id: fileName };
   }
 
-  async updateFile(
+  createParcelGQL(file: FileUpload): { id: string } {
+    const { createReadStream } = file;
+    const newName = getUniqueName();
+    let buffer;
+
+    createReadStream()
+      .on('data', (chunk) => {
+        buffer = chunk;
+      })
+      .on('end', async () => {
+        buffer = buffer.toString();
+
+        fs.writeFileSync(`uploads/${newName}`, filterBadItems(buffer));
+      });
+
+    return { id: newName };
+  }
+
+  async updateParcelGQL(
+    file: FileUpload,
+    fileName: string,
+  ): Promise<{ id: string }> {
+    const { createReadStream } = file;
+    const newName = getUniqueName();
+    let buffer;
+
+    createReadStream()
+      .on('data', (chunk) => {
+        buffer = chunk;
+      })
+      .on('end', async () => {
+        buffer = buffer.toString();
+
+        await fs.writeFile(
+          `uploads/${fileName}`,
+          filterBadItems(buffer),
+          (error) => {
+            if (error) throw new InternalServerErrorException();
+          },
+        );
+      });
+
+    return { id: newName };
+  }
+
+  deleteParcel(fileName: string): Parcel {
+    try {
+      const fileToBeDeleted = readFile(fileName);
+
+      fs.unlinkSync(`uploads/${fileName}`);
+      return fileToBeDeleted;
+    } catch (error) {
+      throw new InternalServerErrorException();
+    }
+  }
+
+  // REST API implementation:
+  async updateParcel(
     fileName: string,
     file: Express.Multer.File,
   ): Promise<Parcel> {
@@ -71,34 +102,19 @@ export class ParcelsService {
     return { text: cleanParcelItems, id: fileName };
   }
 
-  deleteParcel(fileName: string): Parcel {
-    try {
-      const fileToBeDeleted = readFile(fileName);
+  // REST API implementation:
+  async createParcel(file: Express.Multer.File): Promise<Parcel> {
+    const fileName = getUniqueName();
+    const parcelData = file.buffer.toString();
+    const cleanParcelData = filterBadItems(parcelData);
 
-      fs.unlinkSync(`uploads/${fileName}`);
-      return fileToBeDeleted;
-    } catch (error) {
-      throw new InternalServerErrorException();
-    }
+    fs.writeFile(`uploads/${fileName}`, cleanParcelData, (error) => {
+      if (error) throw new InternalServerErrorException();
+    });
+
+    return { text: cleanParcelData, id: fileName };
   }
 }
-
-const readFile = (fileName: string): Parcel => {
-  try {
-    const data = fs.readFileSync(`uploads/${fileName}`, 'utf-8');
-
-    return { text: data, id: fileName };
-  } catch (error) {
-    throw new InternalServerErrorException();
-  }
-};
-
-const renameFile = (file: Express.Multer.File): string => {
-  const fileExtension = file.originalname.split('.')[1];
-  const newName = `${new Date().getTime().toString()}.${fileExtension}`;
-
-  return newName;
-};
 
 const filterBadItems = (parcelItems: string) => {
   const badItems = [
@@ -114,11 +130,21 @@ const filterBadItems = (parcelItems: string) => {
   const removeLineBreak = parcelItems.replace(/(\r\n|\n|\r)/gm, '');
   const splittedWords = removeLineBreak.split(' ');
 
-  // const filtered = splittedWords.filter((item) => !badItems.includes(item));
   const filtered = splittedWords.filter(
     (item) => badItems.indexOf(item) === -1,
   );
 
   const joinedWords = filtered.join(' ');
   return joinedWords;
+};
+
+const getUniqueName = (): string => {
+  const newName = `${new Date().getTime().toString()}.txt`;
+  return newName;
+};
+
+const readFile = (fileName: string): Parcel => {
+  const data = fs.readFileSync(`uploads/${fileName}`, 'utf-8');
+
+  return { text: data, id: fileName };
 };

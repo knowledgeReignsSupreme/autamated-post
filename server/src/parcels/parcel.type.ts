@@ -5,6 +5,6 @@ export class ParcelType {
   @Field((type) => ID)
   id: string;
 
-  @Field()
+  @Field({ nullable: true })
   text: string;
 }

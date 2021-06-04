@@ -1,7 +1,10 @@
-import { Resolver, Query, Mutation, Args, ObjectType } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ParcelType } from './parcel.type';
 import { ParcelsService } from './parcels.service';
 import { Parcel } from './parcel.interface';
+import { FileUpload } from 'graphql-upload';
+
+import { GraphQLUpload } from 'apollo-server-express';
 
 @Resolver((of) => ParcelType)
 export class ParcelResolver {
@@ -9,7 +12,7 @@ export class ParcelResolver {
 
   @Query((returns) => [ParcelType])
   parcels(): Parcel[] {
-    return this.parcelService.getAllParcels();
+    return this.parcelService.getParcels();
   }
 
   @Query((returns) => ParcelType)
@@ -22,8 +25,21 @@ export class ParcelResolver {
     return this.parcelService.deleteParcel(fileName);
   }
 
-  // @Mutation(() => File)
-  // createParcel(@Args({ name: 'file', type: () => GraphQLUpload }) file) {
-  //   return this.createParcel(file);
-  // }
+  @Mutation(() => ParcelType)
+  async updateParcel(
+    @Args('file', { type: () => GraphQLUpload, nullable: true })
+    file: FileUpload,
+    @Args('fileName')
+    fileName: string,
+  ): Promise<{ id: string }> {
+    return this.parcelService.updateParcelGQL(file, fileName);
+  }
+
+  @Mutation(() => ParcelType)
+  createParcel(
+    @Args({ name: 'file', type: () => GraphQLUpload, nullable: true })
+    file: FileUpload,
+  ): { id: string } {
+    return this.parcelService.createParcelGQL(file);
+  }
 }

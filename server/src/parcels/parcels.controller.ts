@@ -20,8 +20,8 @@ export class FilesController {
   constructor(private parcelsService: ParcelsService) {}
 
   @Get('/')
-  getParcels(@Res() res: Response): void {
-    return this.parcelsService.getParcels(res);
+  getParcels(): Parcel[] {
+    return this.parcelsService.getParcels();
   }
 
   @Post('/')
@@ -43,7 +43,7 @@ export class FilesController {
     @Param('fileName') fileName: string,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<Parcel> {
-    return this.parcelsService.updateFile(fileName, file);
+    return this.parcelsService.updateParcel(fileName, file);
   }
 
   @Delete('/:fileName')
