@@ -15,7 +15,7 @@ export class ParcelResolver {
   }
 
   @Query((returns) => ParcelType)
-  parcel(@Args('fileName') fileName: string): Promise<Parcel> {
+  parcel(@Args('fileName') fileName: string): Parcel {
     return this.parcelService.getParcel(fileName);
   }
 

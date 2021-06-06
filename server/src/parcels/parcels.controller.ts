@@ -31,7 +31,7 @@ export class FilesController {
   }
 
   @Get('/:fileName')
-  getParcel(@Param('fileName') fileName: string): Promise<Parcel> {
+  getParcel(@Param('fileName') fileName: string): Parcel {
     return this.parcelsService.getParcel(fileName);
   }
 

@@ -22,8 +22,8 @@ export class ParcelsService {
     return data;
   }
 
-  async getParcel(fileName: string): Promise<Parcel> {
-    const parcel = await readFile(fileName);
+  getParcel(fileName: string): Parcel {
+    const parcel = readFile(fileName);
     if (!parcel) {
       throw new NotFoundException('File not found');
     }
