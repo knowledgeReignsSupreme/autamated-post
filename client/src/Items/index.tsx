@@ -41,7 +41,9 @@ const Items: React.FC = () => {
           )
         )}
       </StyledItems>
-      <Pagination totalPages={paginationData.totalPages} page={+pageNumber} />
+      {paginationData.totalPages && (
+        <Pagination totalPages={paginationData.totalPages} page={+pageNumber} />
+      )}
     </ItemsPage>
   );
 };

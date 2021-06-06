@@ -20,7 +20,6 @@ const Parcels: React.FC = () => {
       ) : isEmpty ? (
         <h3>No parcels to show.</h3>
       ) : (
-        !isLoading &&
         parcels &&
         parcels.map((parcel) => <ParcelCard key={parcel.id} parcel={parcel} />)
       )}
