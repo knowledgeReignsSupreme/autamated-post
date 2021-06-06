@@ -8,7 +8,7 @@ const Parcels: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const parcels = useFetchParcels(setHasError, setIsLoading);
-  const isEmpty = !isLoading && parcels.length === 0;
+  const isEmpty = !isLoading && parcels?.length === 0;
 
   return (
     <StyledParcels>
@@ -21,7 +21,7 @@ const Parcels: React.FC = () => {
         <h3>No parcels to show.</h3>
       ) : (
         !isLoading &&
-        parcels.length >= 1 &&
+        parcels &&
         parcels.map((parcel) => <ParcelCard key={parcel.id} parcel={parcel} />)
       )}
     </StyledParcels>
