@@ -3,7 +3,6 @@ import { ParcelType } from './parcel.type';
 import { ParcelsService } from './parcels.service';
 import { Parcel } from './parcel.interface';
 import { FileUpload } from 'graphql-upload';
-
 import { GraphQLUpload } from 'apollo-server-express';
 
 @Resolver((of) => ParcelType)

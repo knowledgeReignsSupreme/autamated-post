@@ -9,8 +9,6 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Parcel } from './parcel.interface';
 import { ParcelsService } from './parcels.service';
 import { Express } from 'express';
-import { Res } from '@nestjs/common';
-import { Response } from 'express';
 import { Param } from '@nestjs/common';
 import { Delete } from '@nestjs/common';
 import { Put } from '@nestjs/common';

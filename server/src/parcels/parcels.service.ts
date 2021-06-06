@@ -64,13 +64,7 @@ export class ParcelsService {
       .on('end', async () => {
         buffer = buffer.toString();
 
-        await fs.writeFile(
-          `uploads/${fileName}`,
-          filterBadItems(buffer),
-          (error) => {
-            if (error) throw new InternalServerErrorException();
-          },
-        );
+        await fs.writeFileSync(`uploads/${fileName}`, filterBadItems(buffer));
       });
 
     return { id: newName };
