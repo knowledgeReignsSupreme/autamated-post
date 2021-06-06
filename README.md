@@ -14,6 +14,7 @@
   <img src='./create-parcel.png' height='400' width='600'>
 
 <br />
+
 - Update example:
-<br />
-<img src='./update-parcel.png' height='400' width='600'>
+  <br />
+  <img src='./update-parcel.png' height='400' width='600'>
