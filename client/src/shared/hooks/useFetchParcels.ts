@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Parcel, ParcelData } from '../ts/Parcel';
-import axios from 'axios';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 
@@ -17,8 +16,9 @@ export function useFetchParcels(
   setHasError: React.Dispatch<React.SetStateAction<boolean>>,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ): Parcel[] {
-  const { loading, data, error } = useQuery<ParcelData>(GET_PARCELS);
   const [parcels, setParcels] = useState<Parcel[]>([]);
+
+  const { loading, data, error } = useQuery<ParcelData>(GET_PARCELS);
 
   useEffect(() => {
     if (loading) {

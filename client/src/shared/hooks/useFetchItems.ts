@@ -1,10 +1,8 @@
 import { useQuery } from '@apollo/client';
-import axios from 'axios';
 import gql from 'graphql-tag';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Item,
-  ItemData,
   ItemDataVars,
   PaginationData,
   PaginatedItemsData,
@@ -29,16 +27,16 @@ export function useFetchItems(
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   pageNumber: number
 ): [Item[], PaginationData] {
+  const [items, setItems] = useState<Item[]>([] as any);
+  const [paginationData, setPaginationData] = useState<PaginationData>(
+    {} as PaginationData
+  );
+
   const { loading, data, error } = useQuery<PaginatedItemsData, ItemDataVars>(
     GET_ITEMS,
     {
       variables: { pageNumber },
     }
-  );
-
-  const [items, setItems] = useState<Item[]>([] as any);
-  const [paginationData, setPaginationData] = useState<PaginationData>(
-    {} as PaginationData
   );
 
   useEffect(() => {
@@ -61,6 +59,8 @@ export function useFetchItems(
   }, [data, error, loading, setIsLoading, setHasError]);
 
   return [items, paginationData];
+
+  // REST API implementation
 
   // const [paginationData, setPaginationData] = useState<PaginationData>(
   //   {} as PaginationData
