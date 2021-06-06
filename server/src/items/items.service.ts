@@ -36,7 +36,9 @@ export class ItemsService {
     let totalPages = totalItems / resultsPerPage;
     totalPages = Math.ceil(totalPages);
 
-    const sortedItems = itemsData.sort((a, b) => b.frequency - a.frequency);
+    const sortedItems = itemsData.sort((a, b) =>
+      a.itemName.localeCompare(b.itemName, 'en'),
+    );
 
     const sliceFrom = pageNumber === 1 ? 0 : (pageNumber - 1) * 10;
 
