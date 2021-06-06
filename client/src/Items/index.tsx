@@ -17,7 +17,7 @@ const Items: React.FC = () => {
     +pageNumber
   );
 
-  const isEmpty = !isLoading && items.length === 1;
+  const isEmpty = !isLoading && items?.length === 1;
 
   return (
     <ItemsPage>
@@ -34,7 +34,7 @@ const Items: React.FC = () => {
           !isEmpty && (
             <>
               <h4>Total: {paginationData.totalItems}</h4>
-              {items.map((item) => (
+              {items?.map((item) => (
                 <ItemCard key={item.itemName} item={item} />
               ))}
             </>
