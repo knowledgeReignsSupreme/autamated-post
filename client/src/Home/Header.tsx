@@ -18,7 +18,7 @@ const Header: React.FC = () => {
               <Button text='Show Parcels' color='main' bgColor='white' />
             </Link>
             <Link to='items/page/1'>
-              <Button text='Show Products' color='dark' bgColor='white' />
+              <Button text='Show Items' color='dark' bgColor='white' />
             </Link>
           </Buttons>
         </Text>
