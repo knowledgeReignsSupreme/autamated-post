@@ -7,7 +7,9 @@ import { PaginatedItemType } from './items.type';
 export class ItemResolver {
   constructor(private itemsService: ItemsService) {}
   @Query((returns) => PaginatedItemType)
-  items(@Args('pageNumber') pageNumber: number): PaginatedItemsDto {
+  itemsWithPagination(
+    @Args('pageNumber') pageNumber: number,
+  ): PaginatedItemsDto {
     return this.itemsService.getItemsByPopularity(pageNumber);
   }
 }

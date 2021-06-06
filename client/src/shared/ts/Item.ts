@@ -16,7 +16,7 @@ export interface PaginationData {
 type PaginatedItemsResult = ItemData & PaginationData;
 
 export interface PaginatedItemsData {
-  items: PaginatedItemsResult;
+  itemsWithPagination: PaginatedItemsResult;
 }
 
 export interface ItemDataVars {

@@ -12,7 +12,7 @@ import {
 
 const GET_ITEMS = gql`
   query ($pageNumber: Float!) {
-    items(pageNumber: $pageNumber) {
+    itemsWithPagination(pageNumber: $pageNumber) {
       data {
         itemName
         frequency
@@ -32,11 +32,10 @@ export function useFetchItems(
   const { loading, data, error } = useQuery<PaginatedItemsData, ItemDataVars>(
     GET_ITEMS,
     {
-      variables: { pageNumber: pageNumber },
+      variables: { pageNumber },
     }
   );
 
-  // const [result, setResult] = useState<ItemData>();
   const [items, setItems] = useState<Item[]>([] as any);
   const [paginationData, setPaginationData] = useState<PaginationData>(
     {} as PaginationData
@@ -53,9 +52,11 @@ export function useFetchItems(
 
     if (data) {
       setIsLoading(false);
-      const { page, totalPages, totalItems } = data.items;
+      const items = data.itemsWithPagination.data;
+      setItems(items);
+
+      const { page, totalPages, totalItems } = data.itemsWithPagination;
       setPaginationData({ page, totalItems, totalPages });
-      setItems(data.items.data);
     }
   }, [data, error, loading, setIsLoading, setHasError]);
 
